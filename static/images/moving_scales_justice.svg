@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gold Gradient -->
+    <linearGradient id="goldScalesAnim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="40%" stop-color="#D4AF37"/>
+      <stop offset="80%" stop-color="#AA820A"/>
+      <stop offset="100%" stop-color="#6E5204"/>
+    </linearGradient>
+    <!-- Chrome Beam -->
+    <linearGradient id="silverChain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <radialGradient id="scalesGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="goldShine" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      @keyframes balanceRock {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        75% { transform: rotate(-5deg); }
+        100% { transform: rotate(0deg); }
+      }
+      @keyframes leftPanCounter {
+        0% { transform: rotate(0deg) translateY(0px); }
+        25% { transform: rotate(-5deg) translateY(-8px); }
+        75% { transform: rotate(5deg) translateY(8px); }
+        100% { transform: rotate(0deg) translateY(0px); }
+      }
+      @keyframes rightPanCounter {
+        0% { transform: rotate(0deg) translateY(0px); }
+        25% { transform: rotate(-5deg) translateY(8px); }
+        75% { transform: rotate(5deg) translateY(-8px); }
+        100% { transform: rotate(0deg) translateY(0px); }
+      }
+      @keyframes pedestalGlow {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      .beam-crossbar-anim {
+        transform-origin: 250px 140px;
+        animation: balanceRock 6s ease-in-out infinite;
+      }
+      .left-pan-anim {
+        transform-origin: 100px 140px;
+        animation: leftPanCounter 6s ease-in-out infinite;
+      }
+      .right-pan-anim {
+        transform-origin: 400px 140px;
+        animation: rightPanCounter 6s ease-in-out infinite;
+      }
+      .pedestal-aura {
+        transform-origin: 250px 420px;
+        animation: pedestalGlow 4s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Ambient Golden Glow behind the scales -->
+  <circle cx="250" cy="250" r="190" fill="url(#scalesGlow)" class="pedestal-aura"/>
+
+  <!-- Solid Foundation Base & Pedestal -->
+  <!-- Stepped Marble Plinth -->
+  <path d="M120 440 L380 440 L395 465 L105 465 Z" fill="#0B192C" stroke="url(#goldScalesAnim)" stroke-width="2"/>
+  <rect x="145" y="415" width="210" height="25" rx="4" fill="url(#goldScalesAnim)"/>
+  
+  <!-- Central Vertical Pillar -->
+  <line x1="250" y1="120" x2="250" y2="415" stroke="url(#goldScalesAnim)" stroke-width="12" stroke-linecap="round"/>
+  <line x1="246" y1="130" x2="246" y2="405" stroke="#FFF3B0" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- Ornate Pillar Accents -->
+  <circle cx="250" cy="140" r="18" fill="url(#goldScalesAnim)" filter="url(#goldShine)"/>
+  <circle cx="250" cy="140" r="8" fill="#0B192C"/>
+  <polygon points="250,75 240,115 260,115" fill="url(#goldScalesAnim)"/>
+  <circle cx="250" cy="75" r="9" fill="url(#goldScalesAnim)" filter="url(#goldShine)"/>
+
+  <!-- Moving Balance Beam & Pans -->
+  <g class="beam-crossbar-anim">
+    <!-- Crossbar -->
+    <path d="M100 137 L400 137 Q400 143 395 145 L105 145 Q100 143 100 137 Z" fill="url(#goldScalesAnim)" filter="url(#goldShine)"/>
+    <circle cx="100" cy="141" r="8" fill="url(#goldScalesAnim)"/>
+    <circle cx="400" cy="141" r="8" fill="url(#goldScalesAnim)"/>
+
+    <!-- Left Chains and Pan -->
+    <g class="left-pan-anim">
+      <line x1="100" y1="141" x2="50" y2="280" stroke="url(#silverChain)" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <line x1="100" y1="141" x2="150" y2="280" stroke="url(#silverChain)" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <line x1="100" y1="141" x2="100" y2="280" stroke="url(#silverChain)" stroke-width="2" stroke-dasharray="2 3"/>
+      <!-- Pan Bowl -->
+      <path d="M35 280 Q100 340 165 280 Z" fill="url(#goldScalesAnim)" filter="url(#goldShine)"/>
+      <ellipse cx="100" cy="280" rx="65" ry="12" fill="url(#goldScalesAnim)" stroke="#FFF3B0" stroke-width="1.5"/>
+      <!-- Golden Document Scroll inside left pan -->
+      <rect x="80" y="260" width="40" height="15" rx="3" fill="#FFFFFF" stroke="#D4AF37" stroke-width="1"/>
+      <line x1="85" y1="265" x2="115" y2="265" stroke="#94A3B8" stroke-width="1.5"/>
+      <line x1="85" y1="270" x2="105" y2="270" stroke="#94A3B8" stroke-width="1.5"/>
+    </g>
+
+    <!-- Right Chains and Pan -->
+    <g class="right-pan-anim">
+      <line x1="400" y1="141" x2="350" y2="280" stroke="url(#silverChain)" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <line x1="400" y1="141" x2="450" y2="280" stroke="url(#silverChain)" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <line x1="400" y1="141" x2="400" y2="280" stroke="url(#silverChain)" stroke-width="2" stroke-dasharray="2 3"/>
+      <!-- Pan Bowl -->
+      <path d="M335 280 Q400 340 465 280 Z" fill="url(#goldScalesAnim)" filter="url(#goldShine)"/>
+      <ellipse cx="400" cy="280" rx="65" ry="12" fill="url(#goldScalesAnim)" stroke="#FFF3B0" stroke-width="1.5"/>
+      <!-- Golden AI Chip inside right pan -->
+      <rect x="382" y="260" width="36" height="16" rx="3" fill="#0B192C" stroke="#38BDF8" stroke-width="1.5"/>
+      <text x="400" y="272" font-family="'Inter', sans-serif" font-weight="bold" font-size="9" fill="#38BDF8" text-anchor="middle">NLP</text>
+    </g>
+  </g>
+</svg>

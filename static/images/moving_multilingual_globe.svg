@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Radial glow -->
+    <radialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1E3E62" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#0B192C" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#050B14" stop-opacity="1"/>
+    </radialGradient>
+    <!-- Gold Gradient -->
+    <linearGradient id="goldBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8972E"/>
+    </linearGradient>
+    <!-- Cyan Tech Glow -->
+    <linearGradient id="cyanTech" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      @keyframes orbitRing1 {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes orbitRing2 {
+        0% { transform: rotate(360deg) scaleY(0.4); }
+        100% { transform: rotate(0deg) scaleY(0.4); }
+      }
+      @keyframes floatGlyph {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.9; }
+        50% { transform: translateY(-10px) scale(1.15); opacity: 1; }
+      }
+      @keyframes pulseAura {
+        0%, 100% { r: 170px; opacity: 0.25; }
+        50% { r: 185px; opacity: 0.5; }
+      }
+      @keyframes scanLongitude {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 600; }
+      }
+      .orbit-group-1 {
+        transform-origin: 250px 250px;
+        animation: orbitRing1 22s linear infinite;
+      }
+      .orbit-group-2 {
+        transform-origin: 250px 250px;
+        animation: orbitRing2 16s linear infinite;
+      }
+      .pulse-circle {
+        transform-origin: 250px 250px;
+        animation: pulseAura 4s ease-in-out infinite;
+      }
+      .glyph-en { animation: floatGlyph 3.2s ease-in-out infinite; }
+      .glyph-hi { animation: floatGlyph 3.8s ease-in-out infinite; animation-delay: 0.5s; }
+      .glyph-te { animation: floatGlyph 4.1s ease-in-out infinite; animation-delay: 1.1s; }
+      .glyph-ta { animation: floatGlyph 3.5s ease-in-out infinite; animation-delay: 1.6s; }
+      .glyph-es { animation: floatGlyph 3.9s ease-in-out infinite; animation-delay: 2.1s; }
+      .glyph-fr { animation: floatGlyph 4.3s ease-in-out infinite; animation-delay: 0.8s; }
+      .glyph-zh { animation: floatGlyph 3.7s ease-in-out infinite; animation-delay: 2.5s; }
+      .glyph-ar { animation: floatGlyph 4.0s ease-in-out infinite; animation-delay: 1.4s; }
+    </style>
+  </defs>
+
+  <!-- Ambient Background Glow -->
+  <circle cx="250" cy="250" r="180" fill="url(#cyanTech)" opacity="0.1" class="pulse-circle" />
+  <circle cx="250" cy="250" r="160" fill="url(#globeAtmosphere)" stroke="url(#cyanTech)" stroke-width="2.5" />
+
+  <!-- Latitude Lines -->
+  <ellipse cx="250" cy="250" rx="160" ry="120" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.35" />
+  <ellipse cx="250" cy="250" rx="160" ry="70" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.45" />
+  <line x1="90" y1="250" x2="410" y2="250" stroke="url(#goldBeam)" stroke-width="1.8" opacity="0.7" />
+
+  <!-- Longitude Lines -->
+  <ellipse cx="250" cy="250" rx="120" ry="160" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.35" />
+  <ellipse cx="250" cy="250" rx="65" ry="160" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.45" />
+  <line x1="250" y1="90" x2="250" y2="410" stroke="url(#cyanTech)" stroke-width="1.8" opacity="0.6" />
+
+  <!-- Continents Stylized Silhouette Overlay -->
+  <path d="M210 160 Q230 150 260 170 Q280 190 270 220 Q240 240 220 210 Z" fill="#D4AF37" opacity="0.35" />
+  <path d="M160 210 Q190 220 180 260 Q150 280 140 240 Z" fill="#D4AF37" opacity="0.3" />
+  <path d="M280 230 Q330 220 340 260 Q320 300 290 270 Z" fill="#D4AF37" opacity="0.35" />
+  <path d="M220 270 Q250 290 240 340 Q210 330 200 290 Z" fill="#D4AF37" opacity="0.3" />
+
+  <!-- Orbiting Language Particle Rings -->
+  <g class="orbit-group-1">
+    <ellipse cx="250" cy="250" rx="215" ry="90" fill="none" stroke="url(#goldBeam)" stroke-width="2" stroke-dasharray="8 12" opacity="0.75" />
+    <circle cx="465" cy="250" r="7" fill="url(#goldBeam)" filter="url(#softGlow)"/>
+    <circle cx="35" cy="250" r="5" fill="#38BDF8" filter="url(#softGlow)"/>
+  </g>
+
+  <g class="orbit-group-2">
+    <ellipse cx="250" cy="250" rx="225" ry="225" fill="none" stroke="url(#cyanTech)" stroke-width="1.5" stroke-dasharray="5 15" opacity="0.6" />
+    <circle cx="250" cy="25" r="6" fill="#38BDF8"/>
+  </g>
+
+  <!-- Central Legal Justice Icon Badge -->
+  <circle cx="250" cy="250" r="42" fill="#0B192C" stroke="url(#goldBeam)" stroke-width="3" filter="url(#softGlow)"/>
+  <path d="M250 228 L250 270 M234 238 L266 238 M234 238 L228 254 Q234 260 240 254 Z M266 238 L260 254 Q266 260 272 254 Z M242 270 L258 270" 
+        stroke="url(#goldBeam)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Floating Multilingual Language Glyphs Around the Globe -->
+  <!-- English -->
+  <g class="glyph-en" transform="translate(100, 100)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="#38BDF8" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="20" fill="#FFFFFF" text-anchor="middle">EN</text>
+  </g>
+
+  <!-- Hindi (अ) -->
+  <g class="glyph-hi" transform="translate(390, 110)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="url(#goldBeam)" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="20" fill="#FFE082" text-anchor="middle">अ</text>
+  </g>
+
+  <!-- Telugu (తె) -->
+  <g class="glyph-te" transform="translate(430, 260)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="#38BDF8" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="18" fill="#38BDF8" text-anchor="middle">తె</text>
+  </g>
+
+  <!-- Tamil (த) -->
+  <g class="glyph-ta" transform="translate(370, 390)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="url(#goldBeam)" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="18" fill="#FFE082" text-anchor="middle">த</text>
+  </g>
+
+  <!-- Spanish (ES) -->
+  <g class="glyph-es" transform="translate(110, 380)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="#38BDF8" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">ES</text>
+  </g>
+
+  <!-- French (FR) -->
+  <g class="glyph-fr" transform="translate(60, 250)">
+    <circle cx="0" cy="0" r="26" fill="#0B192C" stroke="url(#goldBeam)" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-weight="bold" font-size="18" fill="#FFE082" text-anchor="middle">FR</text>
+  </g>
+
+  <!-- Chinese (文) -->
+  <g class="glyph-zh" transform="translate(250, 440)">
+    <circle cx="0" cy="0" r="24" fill="#0B192C" stroke="url(#goldBeam)" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="7" font-family="'Inter', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">文</text>
+  </g>
+
+  <!-- Arabic (ع) -->
+  <g class="glyph-ar" transform="translate(250, 60)">
+    <circle cx="0" cy="0" r="24" fill="#0B192C" stroke="#38BDF8" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="0" y="7" font-family="'Inter', sans-serif" font-weight="bold" font-size="20" fill="#38BDF8" text-anchor="middle">ع</text>
+  </g>
+</svg>

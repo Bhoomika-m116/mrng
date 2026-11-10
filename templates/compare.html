@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Contract Redline & Comparison Audit | LegalLens{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="official-card mb-4 bg-white shadow-sm border-0">
+        <div class="p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+                <h3 class="official-heading mb-1"><i class="bi bi-file-diff text-primary me-2"></i>Contract Redline & Comparison Audit</h3>
+                <p class="text-secondary small mb-0">
+                    Compare two legal instruments side-by-side (e.g. Master Agreement vs Counterproposal, or Version 1 vs Version 2) to identify clause modifications and risk deltas.
+                </p>
+            </div>
+            <div>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Single Summarizer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Input Form -->
+    <form action="{{ url_for('compare_documents') }}" method="POST">
+        <div class="row g-4 mb-4">
+            <!-- Document Version 1 -->
+            <div class="col-lg-6">
+                <div class="official-card h-100">
+                    <div class="official-card-header bg-dark text-white">
+                        <h5 class="text-white mb-0"><i class="bi bi-file-earmark-text text-warning me-2"></i>Instrument 1 (Original / Baseline Draft)</h5>
+                    </div>
+                    <div class="official-card-body">
+                        <textarea class="form-control font-monospace small" name="doc1_text" rows="12" placeholder="Paste full text of original contract draft here..." required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Version 2 -->
+            <div class="col-lg-6">
+                <div class="official-card h-100">
+                    <div class="official-card-header bg-primary text-white">
+                        <h5 class="text-white mb-0"><i class="bi bi-file-earmark-plus text-white me-2"></i>Instrument 2 (Revised / Counterproposal Draft)</h5>
+                    </div>
+                    <div class="official-card-body">
+                        <textarea class="form-control font-monospace small" name="doc2_text" rows="12" placeholder="Paste full text of counterproposal or revised amendment here..." required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-5">
+            <button type="submit" class="btn btn-official-gold px-5 py-3 fw-bold shadow">
+                <i class="bi bi-arrow-left-right me-2"></i>Execute Comparative Clause & Risk Audit
+            </button>
+        </div>
+    </form>
+
+    <!-- Comparison Results View -->
+    {% if comparison %}
+    <div class="official-card mb-4">
+        <div class="official-card-header">
+            <h5><i class="bi bi-clipboard2-pulse text-primary"></i> Comparative Audit Findings</h5>
+            <span class="badge bg-primary">Risk Delta: {{ comparison.risk_delta }} pts</span>
+        </div>
+        <div class="official-card-body">
+            <!-- Clause Differential Summary -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase fw-bold">Mutual Covenants</div>
+                        <div class="fs-3 fw-bold text-success">{{ comparison.shared_clauses|length }}</div>
+                        <small class="text-muted">Present in both instruments</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase fw-bold">Exclusive to Baseline</div>
+                        <div class="fs-3 fw-bold text-warning">{{ comparison.only_in_1|length }}</div>
+                        <small class="text-muted">Removed or missing in Revision</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase fw-bold">Exclusive to Revision</div>
+                        <div class="fs-3 fw-bold text-danger">{{ comparison.only_in_2|length }}</div>
+                        <small class="text-muted">Newly inserted clauses</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side by Side Summaries -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="border rounded p-3">
+                        <h6 class="fw-bold text-dark border-bottom pb-2">Baseline Summary ({{ comparison.doc1.accuracy_score }}% Accuracy)</h6>
+                        <p class="small text-secondary mb-0">{{ comparison.doc1.summary_text }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="border rounded p-3">
+                        <h6 class="fw-bold text-dark border-bottom pb-2">Revision Summary ({{ comparison.doc2.accuracy_score }}% Accuracy)</h6>
+                        <p class="small text-secondary mb-0">{{ comparison.doc2.summary_text }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

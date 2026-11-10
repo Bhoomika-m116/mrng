@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="radarDark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1E1E2E"/>
+      <stop offset="60%" stop-color="#0B1320"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </radialGradient>
+    <!-- Sweeper Beam Gradient -->
+    <linearGradient id="sweepBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Shield Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8972E"/>
+    </linearGradient>
+    <filter id="radarGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      @keyframes radarSweepRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes blipPulseCritical {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.6); opacity: 0.3; }
+      }
+      @keyframes blipPulseWarning {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.4); opacity: 0.2; }
+      }
+      @keyframes shieldFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      .sweep-group {
+        transform-origin: 250px 250px;
+        animation: radarSweepRotate 6s linear infinite;
+      }
+      .blip-crit {
+        transform-origin: 160px 170px;
+        animation: blipPulseCritical 2s ease-in-out infinite;
+      }
+      .blip-warn {
+        transform-origin: 340px 190px;
+        animation: blipPulseWarning 2.4s ease-in-out infinite;
+        animation-delay: 0.7s;
+      }
+      .blip-mod {
+        transform-origin: 210px 340px;
+        animation: blipPulseWarning 2.8s ease-in-out infinite;
+        animation-delay: 1.4s;
+      }
+      .shield-anim {
+        transform-origin: 250px 250px;
+        animation: shieldFloat 4s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Radar Base Housing -->
+  <rect x="20" y="20" width="460" height="460" rx="24" fill="#0B1320" stroke="#1E293B" stroke-width="2"/>
+  <circle cx="250" cy="250" r="190" fill="url(#radarDark)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Concentric Radar Range Rings -->
+  <circle cx="250" cy="250" r="150" fill="none" stroke="#1E293B" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <circle cx="250" cy="250" r="105" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+  <circle cx="250" cy="250" r="60" fill="none" stroke="#1E293B" stroke-width="1.5" stroke-dasharray="2 4"/>
+
+  <!-- Axis Crosshairs -->
+  <line x1="60" y1="250" x2="440" y2="250" stroke="#334155" stroke-width="1.2"/>
+  <line x1="250" y1="60" x2="250" y2="440" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Rotating Radar Sweep Wedge -->
+  <g class="sweep-group">
+    <!-- Semi-transparent wedge -->
+    <path d="M250 250 L440 250 A190 190 0 0 0 384 116 Z" fill="url(#sweepBeam)"/>
+    <line x1="250" y1="250" x2="440" y2="250" stroke="#EF4444" stroke-width="2.5" filter="url(#radarGlow)"/>
+  </g>
+
+  <!-- Risk Target Blip 1: Critical (Unilateral Termination) -->
+  <g>
+    <circle cx="160" cy="170" r="12" fill="#EF4444" opacity="0.3" class="blip-crit"/>
+    <circle cx="160" cy="170" r="5" fill="#EF4444" filter="url(#radarGlow)"/>
+    <!-- Label -->
+    <rect x="90" y="135" width="115" height="18" rx="4" fill="#0B1320" stroke="#EF4444" stroke-width="1"/>
+    <text x="147" y="148" font-family="'Inter', sans-serif" font-weight="bold" font-size="9" fill="#EF4444" text-anchor="middle">CRITICAL: TERMINATION</text>
+  </g>
+
+  <!-- Risk Target Blip 2: High (Indemnity) -->
+  <g>
+    <circle cx="340" cy="190" r="12" fill="#F59E0B" opacity="0.3" class="blip-warn"/>
+    <circle cx="340" cy="190" r="5" fill="#F59E0B" filter="url(#radarGlow)"/>
+    <rect x="290" y="155" width="105" height="18" rx="4" fill="#0B1320" stroke="#F59E0B" stroke-width="1"/>
+    <text x="342" y="168" font-family="'Inter', sans-serif" font-weight="bold" font-size="9" fill="#F59E0B" text-anchor="middle">HIGH: INDEMNITY</text>
+  </g>
+
+  <!-- Risk Target Blip 3: Moderate (Arbitration) -->
+  <g>
+    <circle cx="210" cy="340" r="10" fill="#38BDF8" opacity="0.3" class="blip-mod"/>
+    <circle cx="210" cy="340" r="4.5" fill="#38BDF8"/>
+    <rect x="155" y="360" width="110" height="18" rx="4" fill="#0B1320" stroke="#38BDF8" stroke-width="1"/>
+    <text x="210" y="372" font-family="'Inter', sans-serif" font-weight="bold" font-size="9" fill="#38BDF8" text-anchor="middle">MOD: ARBITRATION</text>
+  </g>
+
+  <!-- Center Hub: Security Shield (Floating) -->
+  <g class="shield-anim">
+    <circle cx="250" cy="250" r="32" fill="#0B1320" stroke="url(#shieldGrad)" stroke-width="3" filter="url(#radarGlow)"/>
+    <!-- Shield Graphic -->
+    <path d="M250 232 C262 232 268 238 268 248 C268 262 250 268 250 268 C250 268 232 262 232 248 C232 238 238 232 250 232 Z" 
+          fill="url(#shieldGrad)" stroke="#B8972E" stroke-width="1.5"/>
+    <path d="M245 250 L248 253 L256 245" fill="none" stroke="#0B1320" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Top Status Banner -->
+  <g transform="translate(140, 36)">
+    <rect x="0" y="0" width="220" height="24" rx="12" fill="#0B1320" stroke="#EF4444" stroke-width="1.5"/>
+    <circle cx="16" cy="12" r="4" fill="#EF4444"/>
+    <text x="118" y="16" font-family="'Inter', sans-serif" font-weight="bold" font-size="10" fill="#F87171" text-anchor="middle">RISK AUDIT SCANNER ACTIVE</text>
+  </g>
+</svg>

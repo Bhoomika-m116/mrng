@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+.venv/
+.env/
+
+# Environment Variables
+.env
+*.env
+
+# Database (do not commit local DB)
+data/legallens.db
+
+# Uploads & Generated Reports (runtime content)
+uploads/*.pdf
+uploads/*.docx
+uploads/*.png
+uploads/*.jpg
+uploads/*.jpeg
+uploads/*.tiff
+reports/*.pdf
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Temp files
+trans_test_out.txt
+*.tmp
